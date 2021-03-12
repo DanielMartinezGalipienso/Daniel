@@ -46,21 +46,15 @@ public class Calculator {
 				
 				
 				if(operation.equals("sum")) {
-					int sum=first+second;
-					System.out.println("The sum of "+first+" + "+second+" = "+sum);
+					System.out.println("The sum of "+first+" + "+second+" = "+sum(first, second));
 				}else if(operation.equals("dif")) {
-					int dif=first-second;
-					System.out.println("The difference of "+first+" - "+second+" = "+dif);
+					System.out.println("The difference of "+first+" - "+second+" = "+dif(first, second));
 				}else if(operation.equals("mul")) {
-					int mul=first*second;
-					System.out.println("The multiplication of "+first+" x "+second+" = "+mul);
+					System.out.println("The multiplication of "+first+" x "+second+" = "+mul(first, second));
 				}else if(operation.equals("div")) {
-					double div=first/(double)second;
-					System.out.println("The divide of "+first+" ÷ "+second+" = "+div);
+					System.out.println("The divide of "+first+" ÷ "+second+" = "+div(first, second));
 				}else if(operation.equals("rem")) {
-					int div=first/second;
-					int rem=first%second;
-					System.out.println("The divide of "+first+" ÷ "+second+" = "+div+" with a remainder of "+rem);
+					System.out.println("The divide of "+first+" ÷ "+second+" = "+div(first, second)+" with a remainder of "+rem(first, second));
 				}else {
 					System.out.println("Unknown command.");
 				}
@@ -70,6 +64,22 @@ public class Calculator {
 
 		System.out.println("Exiting...");
 
+	}
+	
+	public static int sum(int first, int second) {
+		return first+second;
+	}
+	public static int dif(int first, int second) {
+		return first-second;
+	}
+	public static int mul(int first, int second) {
+		return first*second;
+	}
+	public static double div(int first, int second) {
+		return first/(double)second;
+	}
+	public static int rem(int first, int second) {
+		return first%second;
 	}
 
 }
