@@ -37,16 +37,16 @@ public class Menu {
 	
 //Métodos
 	//Seleccion de Menú
-	public void menuSelection (int starter) {
+	public void menuSelectionOne (int starter) {
 		this.setStarter(starter);
 	}
 	
-	public void menuSelection (int starter, int main) {
+	public void menuSelectionTwo (int starter, int main) {
 		this.setStarter(starter);
 		this.setMain(main);
 	}
 	
-	public void menuSelection (int starter, int main, int dessert) {
+	public void menuSelectionThree (int starter, int main, int dessert) {
 		this.setStarter(starter);
 		this.setMain(main);
 		this.setDessert(dessert);

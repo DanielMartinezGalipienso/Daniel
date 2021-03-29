@@ -44,11 +44,11 @@ public class Main {
 		Menu menu3 = new Menu (false);
 		
 		menu2.setMenu(false);
-		menu2.menuSelection(3, 2);
+		menu2.menuSelectionTwo(3, 2);
 		
-		menu1.menuSelection(1, 3, 1);
+		menu1.menuSelectionThree(1, 3, 1);
 		
-		menu3.menuSelection(4);
+		menu3.menuSelectionOne(4);
 		
 		
 		System.out.println("\nMenú 1:\n" + menu1);
