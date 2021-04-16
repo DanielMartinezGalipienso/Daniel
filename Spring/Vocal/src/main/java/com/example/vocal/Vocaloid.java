@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Vocaloid {
 	
 	//Attributes
+	//To-Do 
+	//Change the two ArrayList of String for String
 	private String nameVocaloid;
 	private ArrayList<String> listOfModules;
 	private ArrayList<String> songsFromVocaloid;

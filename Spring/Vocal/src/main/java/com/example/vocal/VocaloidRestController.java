@@ -1,6 +1,7 @@
 package com.example.vocal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ public class VocaloidRestController {
 	//POST
 	@PostMapping(path="/add", consumes="application/json")
 	public boolean insertVocal(@RequestBody Vocaloid vocal) {
+		//Change to add a return with model
 		vocaloidService.queryAddVocal(vocal);
 		Boolean add = vocaloidService.queryAddVocal(vocal);
 		if(add) {
@@ -31,5 +33,13 @@ public class VocaloidRestController {
 			return false;
 		}
 	}
+	
+	/*
+	//DELETE - Test
+	@DeleteMapping("/deleteOneVocal")
+	public void deleteOneVocal(@RequestBody Vocaloid vocal) {
+		int count = vocaloidService.deleteVocal(vocal.getNameVocaloid());
+	}
+	*/
 	
 }

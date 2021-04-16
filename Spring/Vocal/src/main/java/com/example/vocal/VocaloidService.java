@@ -63,7 +63,7 @@ public class VocaloidService {
 		
 		return countOfDeletes;
 	}
-	
+	//To-Do -> Not implemented
 	public int deleteSomeVocals(ArrayList<String> nameOfSameVocals) {
 		int countOfDeletes = 0;
 		if (haveVocals() == false || !nameOfSameVocals.isEmpty()) {
