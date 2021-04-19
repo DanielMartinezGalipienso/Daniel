@@ -12,9 +12,16 @@ public class Utilities {
 	//   Ask to the user the question passed by String   //
 	//   And it returns the user's response.   //
 	public static String ask(Scanner input, String quest) {
-		//To-Do
-		System.out.println("Ask");
+		System.out.print(quest);
 		return input.nextLine();
+	}
+	//askInt required nextLine() after!!
+	public static int askInt(Scanner input, String quest) {
+		System.out.print(quest);
+		return input.nextInt();
+	}
+	public static void answer(String answer) {
+		System.out.println(answer);
 	}
 	
 	    // -------------------- //
@@ -29,7 +36,7 @@ public class Utilities {
 				+"Add\t\t -> Add a new Bird.\n"
 				+"Observation\t -> Add an observation for an existent Bird.\n"
 				+"Show\t\t -> Show an specific Bird.\n"
-				+"Stadistics\t -> Show a list of information about all the birds.\n"
+				+"Statistics\t -> Show a list of information about all the birds.\n"
 				+"Help\t\t -> Command for know all the commands.\n"
 				+"Quit\t\t -> Exit from the program.\n");
 	}

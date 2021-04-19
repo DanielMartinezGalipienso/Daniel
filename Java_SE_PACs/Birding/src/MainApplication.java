@@ -32,7 +32,6 @@ public class MainApplication {
 				break;
 			}
 			
-			//To-Do
 			switch(command) {
 			case "Help": Utilities.help();
 				break;
@@ -44,8 +43,7 @@ public class MainApplication {
 				break;
 			case "Statistics": statistics(scan, dataBase);
 				break;
-			case "Test": System.out.println("Test options not implemented.");
-				Test.testOfAll();
+			case "Test": Test.testOfAll();
 				break;
 			default:
 				System.out.println("Unknown command");
@@ -60,18 +58,12 @@ public class MainApplication {
 	
 	
 	public static void add(Scanner input, BirdDatabase dataBase) {
-		System.out.println("What is his Common Name?");
-		String commonNameOfBird = input.nextLine();
-		
-		System.out.println("And his Latin Name?");
-		String latinNameOfBird = input.nextLine();
+		//Call the method ask and obtain the answer write of the user
+		String commonNameOfBird = Utilities.ask(input, "What is his Common Name? ");
+		String latinNameOfBird = Utilities.ask(input, "And his Latin Name? ");
 		
 		//Create the bird and get the indexOfBird
-		System.out.println("Creating the bird " + commonNameOfBird +"...");
-		
-		int indexOfBird = dataBase.getBirds().size()-1;
-		System.out.println("Created successfully.");
-		System.out.println("Want to add an observation? (yes / no)");
+		Utilities.answer("Want to add an observation? (yes / no)");
 		
 		//To-Do
 		//Create a variable for observations
@@ -79,39 +71,43 @@ public class MainApplication {
 		//Create an if - else for add a Bird with or without observation
 		
 		if(input.nextLine().equals("yes")) {
-			System.out.println("Now not is abaliable add a comment, try again later.");
+			Utilities.answer("Now not is abaliable add a comment, try again later.");
 			//To-Do Add bird to -> Add an observation for this bird.
 			//observation(input, dataBase);
-			observationNew(input, dataBase, indexOfBird);
-			dataBase.addOneBird(new Bird(commonNameOfBird, latinNameOfBird));
+			Observation observation = observationNew(input);
+			dataBase.addOneBird(new Bird(commonNameOfBird, latinNameOfBird, observation));
+			
+
+			
+			Utilities.answer("Observation added");
 		} else {
 			dataBase.addOneBird(new Bird(commonNameOfBird, latinNameOfBird));
 		}
+		
 
-		System.out.println("Bird created successfully.");
-		return;
+		Utilities.answer("Bird" + commonNameOfBird + "created successfully.");
 		
 	}
 	
 	
-	public static void observationNew(Scanner input, BirdDatabase dataBase, int indexOfBird) {
-		System.out.print("What is the count of birds? ");
-		int observationNumber = input.nextInt();
+	public static Observation observationNew(Scanner input) {
+		//If use an nextInt for the Scanner, required an nextLine after
+		//or this will be skip the next scanner
+		
+		//System.out.print("What is the count of birds? ");
+		//int observationNumber = input.nextInt();
+		int observationNumber = Utilities.askInt(input, "What is the count of birds? ");
 		input.nextLine();
-		System.out.println("Add an detailed location? (yes/no) ");
-		String optionFromUser = input.nextLine();
 		Observation observationToAdd = new Observation(observationNumber);
 		
+		String optionFromUser = Utilities.ask(input, "Add an detailed location? (yes/no) ");
+		
 		if(optionFromUser.equals("yes")) {
-			System.out.print("What is the location where is seen this bird? ");
-			String locationForBirdObservation = input.nextLine();
+			String locationForBirdObservation = Utilities.ask(input, "What is the location where is seen this bird? ");
 			observationToAdd.setObservationDetails(locationForBirdObservation);
 		}
 
-		Bird birdToAddObservation = dataBase.getBirds().get(indexOfBird);
-		birdToAddObservation.addOneObservation(observationToAdd);
-		System.out.println("Observation added");
-		return;
+		return observationToAdd;
 		
 		
 	}
@@ -120,31 +116,32 @@ public class MainApplication {
 		int indexOfBird = -1;
 		int i = 0;
 		//Call Scan for required the latinName of Bird
-		System.out.println("What is the Latin name that has the bird?");
-		String latinNameOfBird = input.nextLine();
+		String latinNameOfBird = Utilities.ask(input, "What is the Latin name that has the bird?");
 		//Find a bird with the latinName
 		while (i < dataBase.getBirds().size()) {
 			if(dataBase.getBirds().get(i).getLatinName().equals(latinNameOfBird)) {
 				indexOfBird = i;
-				System.out.println("The bird " + latinNameOfBird + " has been found."); break;
+				Utilities.answer("The bird " + latinNameOfBird + " has been found.");
+				break;
 			}
 			i++;
 		}
 		if (indexOfBird != -1) {
-			observationNew(input, dataBase, indexOfBird);
+			Observation observation = observationNew(input);
+			dataBase.getBirds().get(indexOfBird).addOneObservation(observation);
 			
 		} else {
 			//If the bird not have found.
-			System.out.println("The bird " + latinNameOfBird + " has not been found.");
+			Utilities.answer("The bird " + latinNameOfBird + " has not been found.");
 		}
 		return;
 	}
 	
 	public static void show (Scanner input, BirdDatabase dataBase) {
-		//To-Do
-		System.out.println("Show");
+		
+		//Show all the Birds from the BirdDatabase
 		if(dataBase.getBirds() == null) {
-			System.out.println("Not have any bird.\nTry to add some birds.");
+			Utilities.answer("Not have any bird.\nTry to add some birds.");
 		} else {
 			System.out.println(dataBase);
 		}
@@ -153,15 +150,15 @@ public class MainApplication {
 	public static void statistics(Scanner input, BirdDatabase dataBase) {
 		
 		//Statistics of observations
-		System.out.println("Stadistics");
+		System.out.println("Statistics");
 		if(dataBase.getBirds() == null) {
-			System.out.println("Not have any bird.\nTry to add some birds.");
+			Utilities.answer("Not have any bird.\nTry to add some birds.");
 		} else {
 			int i = 0;
 			while(i < dataBase.getBirds().size()) {
 				Bird bird = dataBase.getBirds().get(i);
-				System.out.println(bird.getLatinName() +": observations: " + bird.getObservations().size());
-				System.out.println("\tTotal of observations: " +bird.getObservationCount() + "\n");
+				Utilities.answer(bird.getLatinName() +": observations: " + bird.getObservations().size());
+				Utilities.answer("\tTotal of observations: " +bird.allObservationsCount() + "\n");
 				i++;
 			}
 		}

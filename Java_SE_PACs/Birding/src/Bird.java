@@ -67,6 +67,7 @@ public class Bird {
 			return countOfObservationTotalOfBirds;
 		}
 	}
+
 	
 	
 	@Override
@@ -109,6 +110,7 @@ public class Bird {
 		
 		this.observationCount = totalOfObservations;
 	}
+	
 	public ArrayList<Observation> getObservations() {
 		return observations;
 	}
