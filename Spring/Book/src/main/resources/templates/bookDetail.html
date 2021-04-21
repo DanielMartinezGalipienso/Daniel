@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Book details</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>ISBN</th>
+					<th>Pages</th>
+					<th>Year</th>
+					<th>Author</th>
+				</tr>
+			</thead>
+			<tr>
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.ISBN}"></td>
+				<td th:text="${book.pages}"></td>
+				<td th:text="${book.year}"></td>
+				<td th:text="${book.author}"></td>
+			</tr>
+		</table>
+	</body>
+</html>
